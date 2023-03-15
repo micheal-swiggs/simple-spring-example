@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Entity
 @Table(name="books")
@@ -28,5 +30,11 @@ public class Book {
     @NotNull
     @Column(name = "condition", nullable = false)
     private String condition;
+
+    @Column(name = "borrowed_at")
+    Date borrowedAt;
+
+    @Column(name = "due_back_by")
+    Date dueBackBy;
 
 }
