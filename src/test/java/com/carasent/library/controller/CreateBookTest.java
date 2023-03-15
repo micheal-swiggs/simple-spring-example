@@ -52,7 +52,7 @@ public class CreateBookTest {
                 .andExpect(jsonPath("$.title", is("Test Title")))
                 .andExpect(jsonPath("$.author", is("Harry Poters")))
                 .andExpect(jsonPath("$.condition", is("USED")))
-                .andExpect(jsonPath("$.year_of_purchase", is("2023")));
+                .andExpect(jsonPath("$.year_of_purchase", is(2023)));
     }
 
     @Test
