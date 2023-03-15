@@ -2,6 +2,7 @@ package com.carasent.library.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -50,6 +51,11 @@ public class Book {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     Date getDueBackBy(){
         return dueBackBy;
+    }
+
+    @JsonSetter("due_back_by")
+    void setDueBackByJson(Object value){
+        //this stops overriding of dueBackBy when deserializing rest calls
     }
 
 }
