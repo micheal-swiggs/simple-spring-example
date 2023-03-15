@@ -29,9 +29,6 @@ public class ListBooksTest {
     BookRepository bookRepository;
 
     @Autowired
-    private ObjectMapper objectMapper;
-
-    @Autowired
     private WebApplicationContext context;
 
     private MockMvc mockMvc;
@@ -59,7 +56,7 @@ public class ListBooksTest {
     }
 
     @Test
-    void createBookExample() throws Exception {
+    void getBooks() throws Exception {
 
         mockMvc
                 .perform(
