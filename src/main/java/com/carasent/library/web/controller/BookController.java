@@ -2,6 +2,7 @@ package com.carasent.library.web.controller;
 
 import com.carasent.library.model.Book;
 import com.carasent.library.repository.BookRepository;
+import com.carasent.library.web.dto.BookPartialUpdate;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,5 +27,13 @@ public class BookController {
     public Iterable<Book> getBooks(){
         Iterable<Book> all = bookRepository.findAll();
         return all;
+    }
+
+    @PatchMapping("/{book-id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Book patchBook(@PathVariable("book-id") Integer bookId,
+                          @RequestBody BookPartialUpdate patchUpdate){
+
+        return null;
     }
 }
