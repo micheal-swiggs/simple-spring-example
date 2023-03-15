@@ -57,7 +57,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
                 .andExpect(jsonPath("$.author", is(book.getAuthor())))
                 .andExpect(jsonPath("$.title", is(book.getTitle())))
                 .andExpect(jsonPath("$.condition", is(book.getCondition())))
-                .andExpect(jsonPath("$.year_of_purchase", is(book.getYearOfPurchase())))
+                .andExpect(jsonPath("$.year_of_purchase", is(Short.toUnsignedInt(book.getYearOfPurchase()))))
                 .andExpect(jsonPath("$.borrowed_at", is("2023-03-15 13:00:00")))
                 .andExpect(jsonPath("$.due_back_by", is("2023-03-16 13:00:00")));
     }
@@ -77,7 +77,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
                 .andExpect(jsonPath("$.author", is(book.getAuthor())))
                 .andExpect(jsonPath("$.title", is(book.getTitle())))
                 .andExpect(jsonPath("$.condition", is(book.getCondition())))
-                .andExpect(jsonPath("$.year_of_purchase", is(book.getYearOfPurchase())))
+                .andExpect(jsonPath("$.year_of_purchase", is(Short.toUnsignedInt(book.getYearOfPurchase()))))
                 .andExpect(jsonPath("$.borrowed_at", nullValue()))
                 .andExpect(jsonPath("$.due_back_by", nullValue()));
     }
@@ -87,7 +87,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
 
         Map<String, String> patchUpdate = new LinkedHashMap<>();
 
-        Book book = bookRepository.findById(1).get();
+        Book book = bookRepository.findById(5).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)

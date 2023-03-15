@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -38,13 +40,25 @@ public class BookController {
     public Book patchBook(@PathVariable("book-id") Integer bookId,
                           @RequestBody BookPartialUpdate patchUpdate){
 
-        if(EmptyDate.VAL.equals(patchUpdate.getBorrowedAt())){
-            Optional<Book> result = bookRepository.findById(bookId);
-            if(result.isEmpty()){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no such book for id:"+bookId);
-            }
-            return result.get();
+        Optional<Book> result = bookRepository.findById(bookId);
+        if(result.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no such book for id:"+bookId);
         }
-        return null;
+
+        Book book = result.get();
+        if(EmptyDate.VAL.equals(patchUpdate.getBorrowedAt())){
+            return book;
+        } else if (patchUpdate.getBorrowedAt() == null){
+            // book has been returned
+            book.setBorrowedAt(null);
+            book.setDueBackBy(null);
+            return bookRepository.save(book);
+        } else {
+            book.setBorrowedAt(patchUpdate.getBorrowedAt());
+            // We simply add 1 day to get the due back date
+            Date dueBackBy = new Date(patchUpdate.getBorrowedAt().toInstant().plus(1, ChronoUnit.DAYS).toEpochMilli());
+            book.setDueBackBy(dueBackBy);
+            return bookRepository.save(book);
+        }
     }
 }

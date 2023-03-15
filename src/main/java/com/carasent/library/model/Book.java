@@ -1,5 +1,7 @@
 package com.carasent.library.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -36,5 +38,18 @@ public class Book {
 
     @Column(name = "due_back_by")
     Date dueBackBy;
+
+
+    @JsonGetter("borrowed_at")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    Date getBorrowedAtJson(){
+        return borrowedAt;
+    }
+
+    @JsonGetter("due_back_by")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    Date getDueBackBy(){
+        return dueBackBy;
+    }
 
 }
