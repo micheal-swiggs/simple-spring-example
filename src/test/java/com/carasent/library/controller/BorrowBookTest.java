@@ -96,7 +96,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
                 .andExpect(jsonPath("$.author", is(book.getAuthor())))
                 .andExpect(jsonPath("$.title", is(book.getTitle())))
                 .andExpect(jsonPath("$.condition", is(book.getCondition())))
-                .andExpect(jsonPath("$.year_of_purchase", is(book.getYearOfPurchase())))
+                .andExpect(jsonPath("$.year_of_purchase", is(Short.toUnsignedInt(book.getYearOfPurchase()))))
                 .andExpect(jsonPath("$.borrowed_at", nullValue()))
                 .andExpect(jsonPath("$.due_back_by", nullValue()));
     }
