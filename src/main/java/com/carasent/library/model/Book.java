@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-@Entity(name="book")
+@Entity
+@Table(name="books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
