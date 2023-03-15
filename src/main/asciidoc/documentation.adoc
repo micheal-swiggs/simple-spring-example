@@ -1,0 +1,18 @@
+
+=== Create a Book
+Endpoint to create a book.
+
+==== Sample Request
+include::{snippets}/book-create/http-request.adoc[]
+
+==== Request Fields
+include::{snippets}/book-create/request-fields.adoc[]
+
+==== Response Fields
+include::{snippets}/book-create/response-body.adoc[]
+
+==== Sample Response
+include::{snippets}/book-create/http-response.adoc[]
+
+==== CURL sample
+include::{snippets}/book-create/curl-request.adoc[]
