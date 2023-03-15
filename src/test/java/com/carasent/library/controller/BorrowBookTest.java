@@ -81,4 +81,23 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
                 .andExpect(jsonPath("$.borrowed_at", nullValue()))
                 .andExpect(jsonPath("$.due_back_by", nullValue()));
     }
+
+    @Test
+    void noChangeUpdate() throws Exception {
+
+        Map<String, String> patchUpdate = new LinkedHashMap<>();
+
+        Book book = bookRepository.findById(1).get();
+        mockMvc
+                .perform(
+                        patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(patchUpdate)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.author", is(book.getAuthor())))
+                .andExpect(jsonPath("$.title", is(book.getTitle())))
+                .andExpect(jsonPath("$.condition", is(book.getCondition())))
+                .andExpect(jsonPath("$.year_of_purchase", is(book.getYearOfPurchase())))
+                .andExpect(jsonPath("$.borrowed_at", nullValue()))
+                .andExpect(jsonPath("$.due_back_by", nullValue()));
+    }
 }
