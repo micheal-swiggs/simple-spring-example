@@ -13,8 +13,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,6 +41,7 @@ public class CreateBookTest {
         book.put("author", "Harry Poters");
         book.put("year_of_purchase", "2023");
         book.put("condition", "USED");
+        book.put("due_back_by", "2024-05-05 13:00:00");
 
         mockMvc
                 .perform(
@@ -52,6 +52,7 @@ public class CreateBookTest {
                 .andExpect(jsonPath("$.title", is("Test Title")))
                 .andExpect(jsonPath("$.author", is("Harry Poters")))
                 .andExpect(jsonPath("$.condition", is("USED")))
+                .andExpect(jsonPath("$.due_back_by", nullValue()))
                 .andExpect(jsonPath("$.year_of_purchase", is(2023)));
     }
 
