@@ -1,6 +1,7 @@
 package com.carasent.library.controller;
 
 import com.carasent.library.model.Book;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ public class BookController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book createBook(@RequestBody Book newBook){
+    public Book createBook(@Valid @RequestBody Book newBook){
         return newBook;
     }
 }
