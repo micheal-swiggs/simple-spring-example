@@ -5,11 +5,9 @@ import com.carasent.library.repository.BookRepository;
 
 public class LibraryWithBooksTestBase {
 
-
-    protected boolean booksPopulated = false;
     public void populateBooks(BookRepository bookRepository){
 
-        if (booksPopulated) return;
+        if (bookRepository.count() >= 30) return;
         for(short i=0; i<30; i++){
             Book book = new Book();
             book.setAuthor("Author"+i);
@@ -19,6 +17,5 @@ public class LibraryWithBooksTestBase {
             bookRepository.save(book);
         }
 
-        booksPopulated = true;
     }
 }

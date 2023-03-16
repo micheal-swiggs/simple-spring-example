@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -35,6 +36,7 @@ public class CreateBookTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
     @Test
+    @WithMockUser(roles={"ADMIN"})
     void createBookExample() throws Exception {
         Map<String, String> book = new LinkedHashMap<>();
         book.put("title", "Test Title");
@@ -57,6 +59,7 @@ public class CreateBookTest {
     }
 
     @Test
+    @WithMockUser(roles={"ADMIN"})
     void bookBadRequest_NoTitle() throws Exception {
         Map<String, String> book = new LinkedHashMap<>();
         book.put("author", "Harry Poters");
@@ -71,6 +74,7 @@ public class CreateBookTest {
     }
 
     @Test
+    @WithMockUser(roles={"ADMIN"})
     void bookBadRequest_NoAuthor() throws Exception {
         Map<String, String> book = new LinkedHashMap<>();
         book.put("title", "Test Title");
@@ -85,6 +89,7 @@ public class CreateBookTest {
     }
 
     @Test
+    @WithMockUser(roles={"ADMIN"})
     void bookBadRequest_MissingYearOfPurchase() throws Exception {
         Map<String, String> book = new LinkedHashMap<>();
         book.put("title", "Test Title");
@@ -99,6 +104,7 @@ public class CreateBookTest {
     }
 
     @Test
+    @WithMockUser(roles={"ADMIN"})
     void bookBadRequest_MissingCondition() throws Exception {
         Map<String, String> book = new LinkedHashMap<>();
         book.put("title", "Test Title");
