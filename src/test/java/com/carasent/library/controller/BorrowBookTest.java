@@ -2,6 +2,7 @@ package com.carasent.library.controller;
 
 import com.carasent.library.model.Book;
 import com.carasent.library.repository.BookRepository;
+import com.carasent.testcontainers.EnablePostgresContainer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@EnablePostgresContainer
 public class BorrowBookTest extends LibraryWithBooksTestBase {
 
     @Autowired
