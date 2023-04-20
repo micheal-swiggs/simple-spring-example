@@ -52,7 +52,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
         Map<String, String> patchUpdate = new LinkedHashMap<>();
         patchUpdate.put("borrowed_at", "2023-03-15 13:00:00");
 
-        Book book = bookRepository.findById(1).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
@@ -73,7 +73,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
         Map<String, String> patchUpdate = new LinkedHashMap<>();
         patchUpdate.put("borrowed_at", null);
 
-        Book book = bookRepository.findById(1).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
@@ -93,7 +93,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
 
         Map<String, String> patchUpdate = new LinkedHashMap<>();
 
-        Book book = bookRepository.findById(5).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
