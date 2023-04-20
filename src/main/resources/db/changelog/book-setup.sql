@@ -1,5 +1,5 @@
 CREATE TABLE books (
-    id                  INT             PRIMARY KEY     AUTO_INCREMENT,
+    id                  SERIAL          PRIMARY KEY,
     title               VARCHAR(200)    NOT NULL,
     author              VARCHAR(200)    NOT NULL,
     year_of_purchase    SMALLINT        NOT NULL,
