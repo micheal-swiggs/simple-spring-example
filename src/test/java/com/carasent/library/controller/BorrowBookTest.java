@@ -2,6 +2,7 @@ package com.carasent.library.controller;
 
 import com.carasent.library.model.Book;
 import com.carasent.library.repository.BookRepository;
+import com.carasent.testcontainers.EnablePostgresContainer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@EnablePostgresContainer
 public class BorrowBookTest extends LibraryWithBooksTestBase {
 
     @Autowired
@@ -50,7 +52,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
         Map<String, String> patchUpdate = new LinkedHashMap<>();
         patchUpdate.put("borrowed_at", "2023-03-15 13:00:00");
 
-        Book book = bookRepository.findById(1).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
@@ -71,7 +73,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
         Map<String, String> patchUpdate = new LinkedHashMap<>();
         patchUpdate.put("borrowed_at", null);
 
-        Book book = bookRepository.findById(1).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)
@@ -91,7 +93,7 @@ public class BorrowBookTest extends LibraryWithBooksTestBase {
 
         Map<String, String> patchUpdate = new LinkedHashMap<>();
 
-        Book book = bookRepository.findById(5).get();
+        Book book = bookRepository.findById(mostRecentId).get();
         mockMvc
                 .perform(
                         patch("/books/"+book.getId()).contentType(MediaType.APPLICATION_JSON)

@@ -5,16 +5,19 @@ import com.carasent.library.repository.BookRepository;
 
 public class LibraryWithBooksTestBase {
 
+    protected Integer mostRecentId;
+
     public void populateBooks(BookRepository bookRepository){
 
-        if (bookRepository.count() >= 30) return;
+        bookRepository.deleteAll();
         for(short i=0; i<30; i++){
             Book book = new Book();
             book.setAuthor("Author"+i);
             book.setTitle("Title"+i);
             book.setCondition("NEW");
             book.setYearOfPurchase(i);
-            bookRepository.save(book);
+            Book savedBook = bookRepository.save(book);
+            mostRecentId = savedBook.getId().intValue();
         }
 
     }

@@ -1,6 +1,7 @@
 package com.carasent.library.controller;
 
 import com.carasent.library.repository.BookRepository;
+import com.carasent.testcontainers.EnablePostgresContainer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@EnablePostgresContainer
 public class ListBooksTest extends LibraryWithBooksTestBase {
 
     @Autowired

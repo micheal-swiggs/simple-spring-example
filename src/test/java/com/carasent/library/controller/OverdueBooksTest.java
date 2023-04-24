@@ -4,6 +4,7 @@ import com.carasent.library.model.Book;
 import com.carasent.library.repository.BookRepository;
 import com.carasent.library.service.BookService;
 import com.carasent.library.web.dto.BookPartialUpdate;
+import com.carasent.testcontainers.EnablePostgresContainer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@EnablePostgresContainer
 public class OverdueBooksTest extends LibraryWithBooksTestBase {
 
     @Autowired
