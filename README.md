@@ -11,7 +11,6 @@ There is also some very basic and unfinished documentation in `src/main/asciidoc
 
 #### Todo
 
-- Refactor `Book` class into atleast a `BookEntity` and `BookDto` classes.
 - Add documentation for all endpoints.
 - In the documentation for creating a `Book` add documentation for the `borrowed_at` parameter.
 - Package documentation so that it can accessible via `localhost:8080`.
